@@ -42,7 +42,7 @@ services:
         restart: always
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf
-            - ./index.html:/opt/html
+            - ./html:/opt/html
         ports:
             - 80:80
         links:
