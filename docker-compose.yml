@@ -1,0 +1,56 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            args:
+              - NODE_ENV=development
+        command: ./node_modules/.bin/nodemon --inspect=0.0.0.0:9229 server.js
+        depends_on:
+            - mysql
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - 8080:8080
+        env_file:
+            - .env
+        environment:
+            - NODE_ENV=development
+    mysql:
+        image: mysql
+        restart: always
+        command: --init-file /data/application/init.sql
+        volumes:
+            - ./init.sql:/data/application/init.sql
+            - ./.db:/var/lib/mysql
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: api
+            MYSQL_USER: userapi
+            MYSQL_PASSWORD_FILE: /run/secrets/db_password
+            MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+        secrets:
+            - db_password
+            - db_root_password
+        logging:
+            driver: json-file
+    nginx:
+        image: nginx:alpine
+        restart: always
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./src:/opt/html
+        ports:
+            - 80:80
+        links:
+            - app:app
+        logging:
+            driver: json-file
+secrets:
+    db_password:
+        file: ./secrets/db_password.txt
+    db_root_password:
+        file: ./secrets/db_root_password.txt

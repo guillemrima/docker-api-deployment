@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>HYUNDAI® | Admin panel</title>
+	<meta name="description" content="HYUNDAI®'s Admin panel">
+    <meta name="keywords" 	 content="admin, panel">
+    <link href="./admin/assets/favicon.svg" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="./src/index.js" defer></script>
+
+     <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJF84WESX2"></script>
+     <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-DJF84WESX2');
+     </script>
+</head>
+
+
+    <body>
+        <div class="padding-container">
+            <header-component></header-component>
+            <filter-component></filter-component>
+            <div class="panel">    
+                <tab-component url="">
+                </tab-component>
+                <form-component></form-component>
+            </div>
+        </div>
+
+        <modal-component width="100%" heigth="100h">
+        </modal-component>
+
+        <return-component></return-component>
+
+        <lateral-menu-component></lateral-menu-component>
+    </body>
+</html>
