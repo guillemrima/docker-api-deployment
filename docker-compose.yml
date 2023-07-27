@@ -5,7 +5,7 @@ services:
             context: .
             args:
               - NODE_ENV=development
-        command: ./node_modules/.bin/nodemon --inspect=0.0.0.0:9229 server.js
+        command: ./node_modules/.bin/nodemon --inspect=0.0.0.0:9229 index.js
         depends_on:
             - mysql
         volumes:
@@ -42,7 +42,7 @@ services:
         restart: always
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf
-            - ./src:/opt/html
+            - ./client:/opt/html
         ports:
             - 80:80
         links:
